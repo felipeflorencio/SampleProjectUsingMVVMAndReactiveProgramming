@@ -1,0 +1,6 @@
+framework module Pods_Pinch_TerestTests {
+  umbrella header "Pods-Pinch-TerestTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
