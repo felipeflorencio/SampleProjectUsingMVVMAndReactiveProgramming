@@ -43,15 +43,15 @@ class AlbumsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.showBottomLoading(nextPage, loadingIndicator: self.loadingIndicator)
                 
         viewModel.retrieveAlbums(nextPage: nextPage)
-            .subscribe { event in
-            self.tableView.showBottomLoading(false, loadingIndicator: self.loadingIndicator)
+            .subscribe { [weak self] event in
+            self?.tableView.showBottomLoading(false, loadingIndicator: self.loadingIndicator)
             switch event {
             case .completed:
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             case .error(let error):
-                self.noMoreDataToFecth = true
+                self?.noMoreDataToFecth = true
                 guard let pinchError = error as? PinchError else { return }
-                self.showError(with: pinchError)
+                self?.showError(with: pinchError)
             }
         }.disposed(by: disposeBag)
     }
